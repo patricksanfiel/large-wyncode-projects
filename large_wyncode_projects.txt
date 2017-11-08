@@ -1,0 +1,275 @@
+```rb
+@menu = {
+	:name => "Taquiza",
+	:sections => [
+		{
+			:name => "Tacos",
+			:description => "Freshly made blue corn tortillas",
+			:items => [
+						{
+							:name => "Al Pastor",
+							:description => "pork, achiote, pineapple",
+							:price => "3.50"
+						},
+						{
+							:name => "Chorizo",
+							:description => "pork, paprika, cumin, garlic",
+							:price => "3.50"
+						},
+						{
+							:name => "Barbacoa",
+							:description => "beef, cumin, pasilla, negra",
+							:price => "3.50"
+						},
+						{
+							:name => "Pollo",
+							:description => "chicken, scallion, cilantro",
+							:price => "3.50"
+						},
+						{
+							:name => "Huitlacoche",
+							:description => "corn 'truffle', corn, scallion",
+							:price => "3.50"
+						},
+						{
+							:name => "Carnitas",
+							:description => "pork, orange, cinnamon",
+							:price => "3.50"
+						},
+						{
+							:name => "Asada",
+							:description => "steak, citrus, chile de arbol",
+							:price => "5.00"
+						},
+						{
+							:name => "Lengua",
+							:description => "beef tongue, cerveza victoria",
+							:price => "3.50"
+						},
+						{
+							:name => "Camaron",
+							:description => "shrimp, red 'mole', slaw",
+							:price => "5.00"
+						},
+						{
+							:name => "Rajas",
+							:description => "poblano, onion, crema, cotija",
+							:price => "3.50"
+						},
+						{
+							:name => "Chapulines",
+							:description => "grasshoppers, avocado, tajin",
+							:price => "3.50"
+						}
+					]
+		},
+		{
+			:name => "Sides / Antojitos",
+			:items => [
+						{
+							:name => "Totopos",
+							:description => "hand torn blue masa chips",
+							:price => "5.00",
+							:extras => [
+								{
+									:name => "guac",
+									:price => "2.00"
+								},
+								{
+									:name => "frijoles",
+									:price => "2.00"
+								},
+								{
+									:name => "salsa",
+									:price => "1.50"
+								}
+							]
+						},
+						{
+							:name => "Elote",
+							:description => "charred corn, cilantro-jalepeno crema, cotija",
+							:price => "5.00"
+						},
+						{
+							:name => "Quinoa",
+							:description => "jicama, scallion, chile, nopal dressing",
+							:price => "6.50"
+						}
+					]
+		},
+		{
+			:name => "Beer/Cerveza",
+			:items => [
+						{
+							:name => "Corono Extra",
+							:price => "7.00"
+						},
+						{
+							:name => "Corona Light",
+							:price => "6.00"
+						},
+						{
+							:name => "Negra Modelo",
+							:price => "6.00"
+						},
+						{
+							:name => "Pacifico",
+							:price => "6.00"
+						},
+						{
+							:name => "Tecate",
+							:price => "5.00"
+						},
+						{
+							:name => "Victoria",
+							:price => "6.00"
+						}
+					]
+		},
+		{
+			:name => "Breakfast",
+			:description => "Everyday 8 am - 11:30 am",
+			:items => [
+						{
+							:name => "Huevos A La Mexicana",
+							:description => "scrambled eggs, pico, frijoles, crema, tortillas",
+							:price => "5"
+						},
+						{
+							:name => "Quesadillas",
+							:description => "queso chihuahua, cotija, epazote, pico, frijoles",
+							:price => "5"
+						},
+						{
+							:name => "Tostada De Aquacate",
+							:description => "avocado, egg, frijoles, cabbage, cotija",
+							:price => "6.00"
+						},
+						{
+							:name => "Chilaquiles",
+							:description => "crispy masa, pollo, salsa roja, eggs, crema",
+							:price => "6.00"
+						},
+						{
+							:name => "Tortilla De Aguacate",
+							:description => "avocado, queso chihuahua, cotija, frijoles",
+							:price => "6.00"
+						}
+					]
+		},
+		{
+			:name => "Coffee & Tea",
+			:items => [
+						{
+							:name => "Expresso",
+							:type => [
+								{
+									:name => "shot",
+									:price => "3"
+								},
+								{
+									:name => "cortado",
+									:price => "4"
+								},
+								{
+									:name => "latte",
+									:price => "5"
+								}
+							]
+						},
+						{
+							:name => "La Endulzada",
+							:description => "expresso, condensed milk, ice, shaken",
+							:price => "5"
+						},
+						{
+							:name => "Green Tea",
+							:description => "Jasmine Cloud by Jojo Tea",
+							:price => "3"
+						},
+						{
+							:name => "Orange Juice",
+							:description => "Freshly Squeezed Florida OJ",
+							:price => "5"
+						}
+					]
+		}
+	]
+
+}
+
+show_menu_screen = "Welcome to The Taquiza Experience\n Show menu, Place order, or Cancel order"
+puts show_menu_screen
+
+
+
+
+def show
+  @menu[:sections].each do |section|
+    puts section[:name]
+    puts section[:description]
+    section[:items].each do |item|
+      puts "#{item[:name]}"
+      puts "#{item[:description]}"
+      puts "#{item[:price]}"
+    end
+
+  end
+end
+
+def cancel_order
+		user_input1 = gets.chomp.downcase
+		if user_input1 == "cancel order"
+			puts "Goodbye, Thank you for coming!"
+		end
+end
+
+
+
+user_input1 = gets.chomp.downcase
+case user_input1
+when "show menu"
+  show
+when "place order"
+  @order = []
+  puts "Place your order?"
+  show
+  order_placed = gets.chomp.downcase
+  @order << order_placed
+  puts order_placed
+when "cancel order"
+  puts "Goodbye, Thank you for coming!"
+  end
+
+  
+
+
+
+
+
+
+# def show
+#   @menu[:sections].each do |section|
+#     puts section[:name]
+#     puts section[:description]
+#     section[:items].each do |item|
+#       puts "#{item[:name]}"
+#       puts "#{item[:description]}"
+#       puts "#{item{:price}}"
+#     end
+#
+#   end
+# end
+
+
+
+# puts menu[:sections][0][:name] # should output "Tacos"
+#
+# puts menu[:sections][1][:name] # should output "Sides / Antojitos"
+#
+# puts menu[:sections][0][:items][0][:name] # should output "Al Pastor"
+#
+# puts menu[:sections][0][:items][0][:description] # should output "pork, achiote, pineapple"
+#
+# puts menu[:sections][0][:items][0][:price] # should output 3.50
+```
